@@ -10,7 +10,6 @@
     "postinstall": "prisma skills sync || exit 0"
   },
   "dependencies": {
-    "@prisma/client": "^7.10.0",
     "@supabase/supabase-js": "^2.116.0",
     "browser-image-compression": "^2.0.2",
     "cookie": "^2.0.1",
@@ -21,6 +20,7 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@prisma/client": "^7.10.0",
     "@tailwindcss/postcss": "^4",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
@@ -28,7 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
-    "prisma": "^8.0.0-rc.13",
+    "prisma": "^7.10.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
