@@ -1,0 +1,125 @@
+// Prisma Schema for Property Dealer Application
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+enum UserRole {
+  DEALER
+  REGULAR
+  ADMIN
+}
+
+enum ListingType {
+  SELL
+  BUY
+  RENT
+}
+
+enum PropertyCategory {
+  RESIDENTIAL
+  COMMERCIAL
+  AGRICULTURAL_LAND
+  PLOT
+}
+
+enum LandClassification {
+  GENERAL
+  OBC
+  SC
+  ST
+}
+
+enum PropertyStatus {
+  ACTIVE
+  SOLD
+  RENTED
+  INACTIVE
+}
+
+enum AccessRequestStatus {
+  PENDING
+  AUTHORIZED
+  DECLINED
+}
+
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  whatsappNumber String   @unique
+  role          UserRole
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  dealerProfile DealerProfile? @relation(fields: [id], references: [userId], onDelete: Cascade)
+  properties    Property[] @relation(fields: [id], references: [dealerId], onDelete: Cascade)
+  accessRequestsMade AccessRequest[] // Requests made by this user (as regular user) @relation("Requester", fields: [id], references: [userId], onDelete: Cascade)
+  accessRequestsReceived AccessRequest[] // Requests received for this user's properties (as dealer) @relation("Dealer", fields: [id], references: [dealerId], onDelete: Cascade)
+  mapClicks     MapClickEvent[] @relation(fields: [id], references: [userId], onDelete: Cascade)
+}
+
+model DealerProfile {
+  id           String   @id @default(uuid())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String   @unique
+  businessName String?
+  city         String?
+  area         String?
+  profilePhotoUrl String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Property {
+  id                 String   @id @default(uuid())
+  dealer             User     @relation(fields: [dealerId], references: [id], onDelete: Cascade)
+  dealerId           String
+  type               ListingType
+  category           PropertyCategory
+  sizeSqft           Int
+  address            String
+  areaLocality       String?
+  city               String?
+  state              String?
+  googleMapsLink     String
+  approximateValue   Decimal  // stored as numeric, we'll handle currency in UI
+  landClassification LandClassification
+  photos             String[] // array of URLs, max 5
+  description        String?
+  status             PropertyStatus @default(ACTIVE)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  // Relations
+  accessRequests AccessRequest[] // requests for this property @relation(fields: [id], references: [propertyId], onDelete: Cascade)
+  mapClicks      MapClickEvent[] @relation(fields: [id], references: [propertyId], onDelete: Cascade)
+}
+
+model AccessRequest {
+  id          String   @id @default(uuid())
+  user        User     @relation("Requester", fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  dealer      User     @relation("Dealer", fields: [dealerId], references: [id], onDelete: Cascade)
+  dealerId    String
+  property    Property? // Optional: if the request is tied to a specific property
+  propertyId  String?   // Optional
+  status      AccessRequestStatus @default(PENDING)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId, dealerId, propertyId], name: "access_request_user_dealer_property_idx")
+}
+
+model MapClickEvent {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  property  Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId String
+  clickedAt DateTime @default(now())
+}

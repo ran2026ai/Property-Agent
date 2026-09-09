@@ -1,0 +1,32 @@
+{
+  "languageSwitcher": {
+    "english": "English",
+    "hindi": "Hindi"
+  },
+  "navbar": {
+    "home": "Home",
+    "listings": "Listings",
+    "dealerDashboard": "Dealer Dashboard",
+    "adminDashboard": "Admin Dashboard",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "accessRequest": {
+    "title": "Request Access",
+    "name": "Name",
+    "whatsappNumber": "WhatsApp Number",
+    "submit": "Send Request",
+    "pending": "Request sent, waiting for dealer approval",
+    "authorized": "Access granted",
+    "declined": "Request declined",
+    "rateLimit": "Too many requests, please try again later."
+  }
+}

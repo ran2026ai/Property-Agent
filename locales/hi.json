@@ -1,0 +1,32 @@
+{
+  "languageSwitcher": {
+    "english": "अंग्रेजी",
+    "hindi": "हिंदी"
+  },
+  "navbar": {
+    "home": "मुख्य página",
+    "listings": "सूचीबद्धियाँ",
+    "dealerDashboard": "डीलर डैशबोर्ड",
+    "adminDashboard": "एडमिन डैशबोर्ड",
+    "login": "लॉगिन",
+    "logout": "लॉगआउट"
+  },
+  "common": {
+    "save": "सेव करें",
+    "cancel": "रद्द करें",
+    "submit": "제출",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "success": "सफलता"
+  },
+  "accessRequest": {
+    "title": "एक्सेस अनुरोध",
+    "name": "नाम",
+    "whatsappNumber": "व्हाट्सएप नंबर",
+    "submit": "अनुरोध भेजें",
+    "pending": "अनुरोध भेजा गया, 딜र की स्वीकृति की प्रतीक्षा",
+    "authorized": "पहुंच प्रदान की गई",
+    "declined": "अनुरोध अस्वीकृत",
+    "rateLimit": "कई अनुरोध, कृपया बाद में पुनः प्रयास करें。"
+  }
+}
