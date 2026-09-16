@@ -1,3 +1,5 @@
+'use client';
+
 import PropertyForm from '@/components/PropertyForm';
 import { useParams } from 'next/navigation';
 

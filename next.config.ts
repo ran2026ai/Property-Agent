@@ -5,7 +5,13 @@ const nextConfig: NextConfig = {
   // Add any Next.js config options here
   reactStrictMode: true,
   images: {
-    domains: ['xolmjsdujcmrvxatxozw.supabase.co'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'xolmjsdujcmrvxatxozw.supabase.co',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

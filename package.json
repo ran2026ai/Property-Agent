@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma skills sync || exit 0"
+    "postinstall": "prisma generate || exit 0"
   },
   "dependencies": {
+    "@next/codemod": "^16.4.0-canary.31",
     "@supabase/supabase-js": "^2.116.0",
     "browser-image-compression": "^2.0.2",
     "cookie": "^2.0.1",
@@ -17,7 +18,8 @@
     "next": "16.3.4",
     "next-intl": "^4.14.2",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "uuid": "^14.0.2"
   },
   "devDependencies": {
     "@prisma/client": "^7.10.0",
